@@ -4,6 +4,7 @@ import org.example.App;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.testng.annotations.DataProvider;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -26,9 +27,19 @@ public class AppTest {
         System.out.println("After class");
         currentTime();
     }
-    @Test
-    public void testSum(){
-        int sum = App.sumNumbers(10,30);
-        assertEquals(sum,40);
+    @DataProvider(name = "sumProvider")
+     Object[][] dataProvider(){
+        return new Object[][]{
+                {10,30,40},
+                {0,0,0},
+                {-10,10,0}
+        };
+    }
+
+    @Test(dataProvider = "sumProvider")
+    public void testSum(int arg1, int arg2, int expected){
+        int sum = App.sumNumbers(arg1,arg2);
+        System.out.println(sum);
+        assertEquals(sum, expected);
     }
 }
