@@ -1,14 +1,12 @@
 //package ru.skillfactory.qajava.maven;
 
 import org.example.App;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import org.testng.annotations.DataProvider;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 import static org.testng.Assert.assertEquals;
 
 public class AppTest {
@@ -35,9 +33,8 @@ public class AppTest {
                 {-10,10,0}
         };
     }
-
     @Test(dataProvider = "sumProvider")
-    public void testSum(int arg1, int arg2, int expected){
+    void testSum(int arg1, int arg2, int expected){
         int sum = App.sumNumbers(arg1,arg2);
         System.out.println(sum);
         assertEquals(sum, expected);
